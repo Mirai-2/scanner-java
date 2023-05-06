@@ -28,10 +28,10 @@ public final class ReadWithScanner {
       while (scanner.hasNextLine()){
         processLine(scanner.nextLine());
       }    
-      System.out.println(alto);
-      System.out.println(viva);
-      System.out.println(persona);
-      System.out.println(cielo);
+      System.out.println("La palabra alto se repite " + alto + " veces");
+      System.out.println("La palabra viva se repite " + viva + " veces");
+      System.out.println("La palabra persona se repite " + persona + " veces");
+      System.out.println("La palabra cielo se repite " + cielo + " veces");
     }
   }
   
@@ -52,7 +52,7 @@ public final class ReadWithScanner {
     	StringTokenizer st = new StringTokenizer(line, ",. ", true);
     	while (st.hasMoreElements()) {
     		String _token = st.nextToken();
-    		System.out.println(_token);
+    		//System.out.println(_token);
     		switch (_token.trim()) {
 	    		case "alto":
 	    			alto++;
