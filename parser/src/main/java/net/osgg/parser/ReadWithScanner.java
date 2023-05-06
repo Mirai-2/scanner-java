@@ -7,11 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 
 /** Assumes UTF-8 encoding. JDK 7+. */
 public final class ReadWithScanner {
-  
+	  int alto = 0, viva = 0, persona = 0, cielo = 0;
   /**
    Constructor.
    @param fileName full name of an existing, readable file.
@@ -26,7 +27,11 @@ public final class ReadWithScanner {
     try (Scanner scanner =  new Scanner(filePath, ENCODING.name())){
       while (scanner.hasNextLine()){
         processLine(scanner.nextLine());
-      }      
+      }    
+      System.out.println(alto);
+      System.out.println(viva);
+      System.out.println(persona);
+      System.out.println(cielo);
     }
   }
   
@@ -43,17 +48,28 @@ public final class ReadWithScanner {
   protected void processLine(String line){
     //use a second Scanner to parse the content of each line 
     try(Scanner scanner = new Scanner(line)){
-      scanner.useDelimiter("=");
-      if (scanner.hasNext()){
-        //assumes the line has a certain structure
-        String name = scanner.next();
-        String value = scanner.next();
-        log("Name is : " + quote(name.trim()) + ", and Value is : " + quote(value.trim()));
-      }
-      else {
-        log("Empty or invalid line. Unable to process.");
-      }
+    	//el segundo parametro es para los delimitadores, el tercero es pa q se muestre los delimitadores
+    	StringTokenizer st = new StringTokenizer(line, ",. ", true);
+    	while (st.hasMoreElements()) {
+    		String _token = st.nextToken();
+    		System.out.println(_token);
+    		switch (_token.trim()) {
+	    		case "alto":
+	    			alto++;
+	    			break;
+	    		case "viva":
+	    			viva++;
+	    			break;
+	    		case "persona":
+	    			persona++;
+	    			break;
+	    		case "cielo":
+	    			cielo++;
+	    			break;
+    		}
+        }
     }
+    
   }
   
   // PRIVATE 
